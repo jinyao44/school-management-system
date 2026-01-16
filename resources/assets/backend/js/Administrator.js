@@ -41,8 +41,8 @@ export default class Administrator {
             if (stopchange === false) {
                 let isActive = $(this).prop('checked') ? 1 : 0;
                 let pk = $(this).attr('data-pk');
-                // FIX: Safe regex with no backtracking ambiguity
-                let newpostUrl = postUrl.replace(/[.0][0]*$/, pk);
+                // FIX: Use bounded quantifier {1,50} to strictly limit backtracking risk
+                let newpostUrl = postUrl.replace(/\.?0{1,50}$/, id);
                 axios.post(newpostUrl, { 'status': isActive })
                     .then((response) => {
                         if (response.data.success) {
