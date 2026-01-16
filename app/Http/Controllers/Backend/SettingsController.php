@@ -96,10 +96,10 @@ class SettingsController extends Controller
                 $fileName = basename($storagepath);
                 $data['logo_small'] = $fileName;
 
-                //if file chnage then delete old one
-                $oldFile = $request->get('oldLogoSmall','');
+               $oldFile = $request->get('oldLogoSmall','');
                 if( $oldFile != ''){
-                    $file_path = "public/logo/".$oldFile;
+                    $cleanFileName = basename($oldFile); // FIX
+                    $file_path = "public/logo/".$cleanFileName;
                     Storage::delete($file_path);
                 }
             }
@@ -112,12 +112,12 @@ class SettingsController extends Controller
                 $fileName = basename($storagepath);
                 $data['favicon'] = $fileName;
 
-                //if file chnage then delete old one
-                $oldFile = $request->get('oldFavicon','');
-                if( $oldFile != ''){
-                    $file_path = "public/logo/".$oldFile;
-                    Storage::delete($file_path);
-                }
+            $oldFile = $request->get('oldFavicon','');
+            if( $oldFile != ''){
+                $cleanFileName = basename($oldFile); // FIX
+                $file_path = "public/uploads/".$cleanFileName;
+                Storage::delete($file_path);
+            }
             }
             else{
                 $data['favicon'] = $request->get('oldFavicon','');
