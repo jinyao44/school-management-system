@@ -867,7 +867,7 @@ class DemoAppDataSeeder extends Seeder
         foreach ($attendanceDates as $attendanceDate => $value) {
 
             foreach ($employees as $employeeId => $employeeShift) {
-                $isPresent = rand(0,1);
+                $isPresent = random_int(0,1);
                 if($isPresent) {
                     $inTime = Carbon::createFromFormat('Y-m-d h:i a', $attendanceDate . ' ' . $shiftData['Morning']['start']);
                     $outTime = Carbon::createFromFormat('Y-m-d h:i a', $attendanceDate . ' ' . $shiftData['Morning']['end']);
@@ -1268,7 +1268,7 @@ class DemoAppDataSeeder extends Seeder
     private function generateMarks($distributeMarksRules){
         $marks = [];
         foreach ($distributeMarksRules as $type => $values){
-            $marks[$type] = rand(0, $values['total_marks']);
+            $marks[$type] = random_int(0, $values['total_marks']);
         }
 
         return $marks;
