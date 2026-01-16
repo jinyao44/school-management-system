@@ -41,7 +41,8 @@ export default class Administrator {
             if (stopchange === false) {
                 let isActive = $(this).prop('checked') ? 1 : 0;
                 let pk = $(this).attr('data-pk');
-                let newpostUrl = postUrl.replace(/\.?0+$/, pk);
+                // FIX: Optimized regex to prevent ReDoS (Denial of Service)
+                let newpostUrl = postUrl.replace(/(\.0+|0+)$/, pk);
                 axios.post(newpostUrl, { 'status': isActive })
                     .then((response) => {
                         if (response.data.success) {
