@@ -81,7 +81,9 @@ class SettingsController extends Controller
                 //if file chnage then delete old one
                 $oldFile = $request->get('oldLogo','');
                 if( $oldFile != ''){
-                    $file_path = "public/logo/".$oldFile;
+                    // FIX: Path Traversal mitigated
+                    $cleanFileName = basename($oldFile);
+                    $file_path = "public/logo/".$cleanFileName;
                     Storage::delete($file_path);
                 }
             }
