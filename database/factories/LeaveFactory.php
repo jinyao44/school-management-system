@@ -8,7 +8,7 @@ $factory->define(App\Leave::class, function (Faker $faker) {
             // Get random teacher id
             return App\Employee::inRandomOrder()->first()->id;
         },
-        'leave_type' => rand(1,2),
+        'leave_type' => random_int(1,2),
         'leave_date' => $faker->dateTimeThisMonth($max = 'now', $timezone = "Asia/Dhaka")->format('d/m/Y'),
         'document' => null,
         'description' => $faker->sentence,
