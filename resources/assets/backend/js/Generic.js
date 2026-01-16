@@ -119,7 +119,8 @@ export default class Generic {
             if (stopchange === false) {
                 let isActive = $(this).prop('checked') ? 1 : 0;
                 let pk = $(this).attr('data-pk');
-                let newpostUrl = postUrl.replace(/\.?0+$/, pk);
+                // FIX: Use bounded quantifier {1,50} to strictly limit backtracking risk
+                let newpostUrl = postUrl.replace(/\.?0{1,50}$/, pk);
                 axios.post(newpostUrl, { 'status': isActive })
                     .then((response) => {
                         if (response.data.success) {
