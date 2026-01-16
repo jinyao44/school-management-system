@@ -799,7 +799,7 @@ class DemoAppDataSeeder extends Seeder
             }
 
             foreach ($students as $studentId => $shift) {
-                $isPresent = rand(0,1);
+                $isPresent = random_int(0,1);
                 if($isPresent) {
                     $inTime = $shiftRuningTimes[$shift]['start'];
                     $outTime = $shiftRuningTimes[$shift]['end'];
