@@ -12,6 +12,6 @@ $factory->define(App\Leave::class, function (Faker $faker) {
         'leave_date' => $faker->dateTimeThisMonth($max = 'now', $timezone = "Asia/Dhaka")->format('d/m/Y'),
         'document' => null,
         'description' => $faker->sentence,
-        'status' => rand(1,3)
+        'status' => random_int(1,3)
     ];
 });
