@@ -359,7 +359,8 @@ export default class Site {
     }
     static deleteThumnailImage(that) {
         let id = $(that).attr('data-id');
-        let newpostUrl = postUrl.replace(/\.?0+$/,id);
+        // FIX: Use bounded quantifier {1,50} to strictly limit backtracking risk
+        let newpostUrl = postUrl.replace(/\.?0{1,50}$/, id);
         axios.post(newpostUrl,{})
             .then((response)=>{
                 if(response.data.success){
