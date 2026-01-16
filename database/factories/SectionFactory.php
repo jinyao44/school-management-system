@@ -6,7 +6,7 @@ $factory->define(App\Section::class, function (Faker $faker) {
 
     return [
         'name' => strtoupper($faker->unique()->randomLetter),
-        'capacity' => rand(20,40),
+        'capacity' => random_int(20,40),
         'class_id' => function(){
             return App\IClass::where('id','!=',1)->inRandomOrder()->first()->id;
         },
