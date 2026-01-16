@@ -152,7 +152,7 @@ class DemoAppDataSeeder extends Seeder
         $users->each(function ($user) use($created_at, $created_by) {
             \App\UserRole::create([
                 'user_id' => $user->id,
-                'role_id' => rand(2,7),
+                'role_id' => random_int(2,7),
                 'created_by' => $created_by,
                 'created_at' => $created_at
 
